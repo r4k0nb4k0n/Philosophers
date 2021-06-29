@@ -1,5 +1,5 @@
 *.swp
 *.o
 .DS_Store
-./philo/philo
-./philo/obj
+philo/philo
+philo/obj
