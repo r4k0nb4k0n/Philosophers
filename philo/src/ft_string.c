@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:06:05 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 03:49:10 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 04:13:52 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,29 +114,36 @@ char	*ft_strdup(char *str)
 }
 
 /*
-**	Join two strings.
+**	Tranform number string to int value.
 **
-**	@param	char 	*s1
-**	@param	char 	*s2
-**	@return	char		*ret
+**	@param	const char	*nptr	The target number string to transform.
+**	@return	int			ret		The tranformed int value.
 */
 
-char	*ft_strjoin(char *s1, char *s2)
+int		ft_atoi(const char *nptr)
 {
-	char	*ret;
-	char	*ptr;
+	int	ret;
+	int	sign;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	ret = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (ret != NULL)
+	ret = 0;
+	sign = 1;
+	while (*nptr && ft_isspace(*nptr))
+		nptr++;
+	if (*nptr && ft_issign(*nptr))
 	{
-		ptr = ret;
-		while (*s1)
-			*ptr++ = *s1++;
-		while (*s2)
-			*ptr++ = *s2++;
-		*ptr = '\0';
+		if (*nptr == '-')
+			sign = -1;
+		nptr++;
+	}
+	while (*nptr && ft_isdigit(*nptr))
+	{
+		ret = ret * 10;
+		ret += (*nptr - '0') * sign;
+		if (ret > 0 && sign < 0)
+			return (0);
+		else if (ret < 0 && sign > 0)
+			return (-1);
+		nptr++;
 	}
 	return (ret);
 }

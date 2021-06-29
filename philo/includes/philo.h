@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 03:54:42 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 04:40:49 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@
 **	Define necessary macros.
 */
 
+# define TRUE 1
+# define FALSE 0
+
+/*
+**	ft_character.c
+*/
+
+int		ft_isdigit(char c);
+int		ft_issign(char c);
+int		ft_isspace(char c);
+
 /*
 **	ft_string.c
 */
@@ -53,7 +64,14 @@ int		ft_strlen(char *s);
 int		ft_strncmp(char *s1, char *s2, size_t len);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ft_strdup(char *str);
-char	*ft_strjoin(char *s1, char *s2);
+int		ft_atoi(const char *nptr);
+
+/*
+**	ft_check_if_str_int_format.c
+*/
+
+int		ft_check_if_str_int_format(char *str);
+int		ft_check_if_strs_int_format(int strc, char **strv);
 
 /*
 **	ft_error.c

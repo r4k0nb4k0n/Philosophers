@@ -6,7 +6,7 @@
 #    By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 03:29:59 by hyechoi           #+#    #+#              #
-#    Updated: 2021/06/30 03:54:20 by hyechoi          ###   ########.fr        #
+#    Updated: 2021/06/30 04:41:02 by hyechoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = ./src
-SRC_FILE = ft_string.c ft_error.c\
+SRC_FILE = ft_character.c ft_string.c ft_check_if_str_int_format.c ft_error.c\
 			philo.c
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILE))
 OBJ_DIR = ./obj

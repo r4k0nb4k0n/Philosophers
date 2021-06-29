@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:36:39 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 03:53:42 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 04:41:29 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 
 int main(int argc, char **argv)
 {
-	if (argv && 5 <= argc && argc <= 6)
+	if (5 <= argc && argc <= 6 &&
+		ft_check_if_strs_int_format(argc - 1, argv + 1))
 		printf("Go philo!\n");
 	else
 		ft_exit_with_error_msg(NULL, ERR_USAGE);
