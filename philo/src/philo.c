@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:36:39 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 04:41:29 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/03 02:40:21 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@
 **							Return EXIT_SUCCESS if success.
 */
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	if (5 <= argc && argc <= 6 &&
-		ft_check_if_strs_int_format(argc - 1, argv + 1))
+	if (5 <= argc && argc <= 6
+		&& ft_check_if_strs_int_format(argc - 1, argv + 1))
 		printf("Go philo!\n");
 	else
-		ft_exit_with_error_msg(NULL, ERR_USAGE);
+	{
+		ft_print_error(NULL, ERR_USAGE1);
+		ft_print_error(NULL, ERR_USAGE2);
+		ft_exit_with_error_msg(NULL, ERR_USAGE3);
+	}
 	return (EXIT_SUCCESS);
 }

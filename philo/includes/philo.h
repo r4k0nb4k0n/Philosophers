@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 04:40:49 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/03 02:39:53 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@
 
 # define ERR_PREFIX "philo"
 # define COLON_SPACE ": "
-# define ERR_USAGE "usage: ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n"
+# define ERR_USAGE1 "usage: ./philo number_of_philosophers time_to_die "
+# define ERR_USAGE2 "time_to_eat time_to_sleep "
+# define ERR_USAGE3 "[number_of_times_each_philosopher_must_eat]\n"
 # define ERR_MALLOC "failed to malloc\n"
 
 /*

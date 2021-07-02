@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:19:10 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 04:39:45 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/03 02:36:53 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	ft_check_if_str_int_format(char *str)
 }
 
 /*
-**	Check if strings are valid integer.
-**	1. 
+**	Check if strings are in valid integer format.
 **
 **	@param	int		strc
 **	@param	char	**strv

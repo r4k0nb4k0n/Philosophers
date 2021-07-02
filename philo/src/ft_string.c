@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:06:05 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 04:13:52 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/03 02:37:52 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	@return	int		c	The length of the string.
 */
 
-int		ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	char	*p;
 
@@ -38,7 +38,7 @@ int		ft_strlen(char *s)
 **	@return	int			res
 */
 
-int		ft_strncmp(char *s1, char *s2, size_t len)
+int	ft_strncmp(char *s1, char *s2, size_t len)
 {
 	unsigned char	*p1;
 	unsigned char	*p2;
@@ -120,7 +120,7 @@ char	*ft_strdup(char *str)
 **	@return	int			ret		The tranformed int value.
 */
 
-int		ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
 	int	ret;
 	int	sign;
