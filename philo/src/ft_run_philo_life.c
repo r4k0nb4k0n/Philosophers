@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 03:01:16 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 04:39:22 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	*ft_run_philo_life(void *philo)
 	p = (t_philo *)philo;
 	while (!ft_philo_is_dead(p))
 	{
-		if (!ft_philo_is_dead(p) && p->timestamp.tv_sec != 0)
-			p->status = (p->status + 1) % 3;
 		if (ft_philo_is_dead(p) || gettimeofday(&(p->timestamp), NULL) < 0)
 			break ;
 		ft_set_params_by_philo_status(p, &act, &msg);
