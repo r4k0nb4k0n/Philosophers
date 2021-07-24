@@ -6,11 +6,22 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:36:39 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/03 02:40:21 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/24 17:41:17 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_prep_and_work(t_context *ctx, pthread_mutex_t **f_locks, t_philo **ps)
+{
+	int	res;
+
+	res = ft_init_philos(ps, ctx, *f_locks);
+	if (res >= 0)
+		res = ft_simulate_dining_philosophers(ctx, *ps);
+	ft_clean_dining_philosophers(ctx, f_locks, ps);
+	return (res);
+}
 
 /*
 **	The main function of the program named `philo`.
@@ -28,16 +39,31 @@
 **							Return EXIT_SUCCESS if success.
 */
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	if (5 <= argc && argc <= 6
-		&& ft_check_if_strs_int_format(argc - 1, argv + 1))
-		printf("Go philo!\n");
-	else
+	t_context		ctx;
+	pthread_mutex_t	*fork_locks;
+	t_philo			*philos;
+
+	if (ac < 5 || ac > 6 || !ft_check_if_strs_int_format(ac - 1, av + 1))
 	{
-		ft_print_error(NULL, ERR_USAGE1);
-		ft_print_error(NULL, ERR_USAGE2);
-		ft_exit_with_error_msg(NULL, ERR_USAGE3);
+		ft_print_usage();
+		return (EXIT_FAILURE);
+	}
+	if (ft_init_context_philo(&ctx, ac - 1, av + 1) < 0)
+	{
+		ft_print_error(ERR_PREFIX, ERR_FAILED_INIT_CONTEXT_PHILO);
+		return (EXIT_FAILURE);
+	}
+	if (ft_init_fork_locks(&fork_locks, ctx.num_of_philos) < 0)
+	{
+		ft_print_error(ERR_PREFIX, ERR_FAILED_INIT_FORK_LOCKS);
+		return (EXIT_FAILURE);
+	}
+	if (ft_prep_and_work(&ctx, &fork_locks, &philos) < 0)
+	{
+		ft_print_error(ERR_PREFIX, ERR_FAILED_SIMULATE);
+		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

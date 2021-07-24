@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 17:46:54 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/06/30 03:40:47 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/24 17:15:43 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,9 @@ void	ft_print_error(char *prefix, char *msg)
 		write(STDERR_FILENO, msg, ft_strlen(msg));
 }
 
-/*
-**	Exit if the parameter `target` is NULL, which means NOT malloced normally.
-**	Exit with printing error message ERR_MALLOC.
-**
-**	@param	void	*target	The parameter to check if NULL.
-**	@return	void			Nothing.
-*/
-
-void	ft_exit_if_null(void *target)
+void	ft_print_usage(void)
 {
-	if (!target)
-	{
-		ft_print_error(ERR_PREFIX, ERR_MALLOC);
-		exit(EXIT_FAILURE);
-	}
-}
-
-/*
-**	Exit with system error message.
-**
-**	@param	char	*prefix	The prefix string.
-**	@return	void			Nothing.
-*/
-
-void	ft_exit_with_syserr(char *prefix)
-{
-	perror(prefix);
-	exit(EXIT_FAILURE);
-}
-
-/*
-**	Exit with error message.
-**
-**	@param	char	*prefix	The prefix string.
-**	@param	char	*msg	The error message.
-**	@return	void			Nothing.
-*/
-
-void	ft_exit_with_error_msg(char *prefix, char *msg)
-{
-	ft_print_error(prefix, msg);
-	exit(EXIT_FAILURE);
+	ft_print_error(NULL, ERR_USAGE1);
+	ft_print_error(NULL, ERR_USAGE2);
+	ft_print_error(NULL, ERR_USAGE3);
 }
