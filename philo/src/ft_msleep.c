@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:48:52 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 02:11:21 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 05:16:28 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	ft_msleep(useconds_t milliseconds)
 	while (TRUE)
 	{
 		if (gettimeofday(&curr, NULL) < 0)
-			return (-1);
-		if (usleep(50) < 0)
 			return (-1);
 		gap = (curr.tv_sec - prev.tv_sec) * 1000
 			+ (curr.tv_usec - prev.tv_usec) / 1000;
