@@ -6,7 +6,7 @@
 #    By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 03:29:59 by hyechoi           #+#    #+#              #
-#    Updated: 2021/07/25 21:34:09 by hyechoi          ###   ########.fr        #
+#    Updated: 2021/07/26 04:57:30 by hyechoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = ./src
 SRC_FILE = ft_character.c ft_string.c ft_putchar_fd.c ft_putnbr_fd.c\
 			ft_putstr_fd.c ft_error.c ft_msleep.c\
+			ft_check_philo_status_for_ms.c\
 			ft_check_if_str_int_format.c\
 			ft_init_context_philo.c ft_init_fork_locks.c ft_clean_fork_locks.c\
 			ft_trylock.c ft_unlock.c\

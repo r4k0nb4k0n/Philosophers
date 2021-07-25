@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 21:33:42 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 04:57:11 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,13 @@ void	ft_print_usage(void);
 */
 
 int		ft_msleep(long milliseconds);
+
+/*
+**	ft_check_philo_status_for_ms.c
+*/
+
+int		ft_check_philo_status_for_ms(t_philo *p, int expected,
+		long milliseconds);
 
 /*
 **	ft_check_if_str_int_format.c

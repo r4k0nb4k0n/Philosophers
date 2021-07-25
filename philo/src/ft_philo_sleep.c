@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/24 23:50:12 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 04:59:01 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 int	ft_philo_sleep(t_philo *p)
 {
-	if (ft_msleep(p->ctx->time_to_sleep) < 0)
+	if (ft_check_philo_status_for_ms(p, STA_PHILO_DIED, p->ctx->time_to_sleep)
+		< 0)
 		return (-1);
 	return (0);
 }
