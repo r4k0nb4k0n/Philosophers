@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/26 00:30:38 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 00:51:36 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ void	*ft_watch_philos(void *philos)
 	while (num_of_alive > 0)
 	{
 		if (i == 0)
+		{
+			ft_msleep(5);
 			num_of_alive = p->ctx->num_of_philos;
+		}
 		if (p->status == STA_PHILO_DIED
 			|| ft_philo_is_done_must_eat(p))
 			num_of_alive--;
