@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:20:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 20:02:39 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 21:34:32 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_philo_think(t_philo *p)
 		if (ft_philo_is_dead(p))
 			return (-1);
 	}
-	if (ft_print_philosopher_status(p, MSG_PHILO_TAKEN_FORK) < 0)
+	if (ft_print_philo_status(p, MSG_PHILO_TAKEN_FORK) < 0)
 		return (-1);
 	while (p->fork_locks[LEFT] == p->fork_locks[RIGHT])
 	{
@@ -42,7 +42,7 @@ int	ft_philo_think(t_philo *p)
 		if (ft_philo_is_dead(p))
 			return (-1);
 	}
-	if (ft_print_philosopher_status(p, MSG_PHILO_TAKEN_FORK) < 0)
+	if (ft_print_philo_status(p, MSG_PHILO_TAKEN_FORK) < 0)
 		return (-1);
 	return (0);
 }

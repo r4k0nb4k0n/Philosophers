@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 20:01:14 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 21:33:42 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,10 +215,10 @@ int		ft_init_philos(t_philo **philos, t_context *ctx, t_lock *fork_locks);
 long	ft_get_timestamp_ms(void);
 
 /*
-**	ft_print_philosopher_status.c
+**	ft_print_philo_status.c
 */
 
-int		ft_print_philosopher_status(t_philo *philo, char *msg);
+int		ft_print_philo_status(t_philo *philo, char *msg);
 
 /*
 **	ft_philo_is_dead.c
@@ -237,6 +237,7 @@ int		ft_philo_think(t_philo *p);
 **	ft_philo_eat.c
 */
 
+int		ft_philo_drop_forks(t_philo *p);
 int		ft_philo_eat(t_philo *p);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 21:12:01 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 21:33:13 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,17 @@ void	*ft_run_philo_life(void *philo)
 		if (ft_philo_is_dead(p) || p->timestamp < 0)
 			break ;
 		ft_set_params_by_philo_status(p, &act, &msg);
-		if (ft_philo_is_dead(p) || ft_print_philosopher_status(p, msg) < 0)
+		if (ft_philo_is_dead(p) || ft_print_philo_status(p, msg) < 0)
 			break ;
 		if (ft_philo_is_dead(p) || act(p) < 0)
 			break ;
 		if (!ft_philo_is_dead(p))
 			p->status = (p->status + 1) % 3;
 	}
-	if (p->status == STA_PHILO_DIED
-		&& ft_print_philosopher_status(p, MSG_PHILO_DIED) < 0)
+	if (ft_philo_drop_forks(p) < 0)
 		return ((void *)(-1));
-	if (ft_philo_is_dead_suddenly(p))
+	if ((ft_philo_is_dead(p) && ft_print_philo_status(p, MSG_PHILO_DIED) < 0)
+		|| ft_philo_is_dead_suddenly(p))
 		return ((void *)(-1));
 	return (NULL);
 }
