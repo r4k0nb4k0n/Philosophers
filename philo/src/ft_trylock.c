@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_philosopher_status.c                      :+:      :+:    :+:   */
+/*   ft_trylock.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/23 18:24:50 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 20:01:59 by hyechoi          ###   ########.fr       */
+/*   Created: 2021/07/25 19:21:13 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/07/25 20:41:07 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 /*
-**	Print philosopher's status.
+**	Locks mutex.
+**	If `is_locked` is TRUE,
+**	this will not block waiting for the mutex, but will return -1.
 **
-**	@param	t_philo	*philo
-**	@param	char	*msg
-**	@return	int		res		Return 0 if success
-**							Return -1 if failure
+**	@param	t_lock	*lock
+**	@return	res				Return 0 if success.
+**							Return -1 if failure.
 */
 
-int		ft_print_philosopher_status(t_philo *p, char *msg)
+int	ft_trylock(t_lock *lock)
 {
-	long	curr;
-
-	while (ft_trylock(&(p->ctx->print_lock)) < 0)
-	{
-		if (ft_philo_is_dead(p))
-			return (-1);
-	}
-	curr = ft_get_timestamp_ms();
-	if (curr < 0)
+	if (lock->is_locked)
 		return (-1);
-	printf("%ldms %d %s", curr - p->ctx->timestamp, p->num, msg);
-	if (ft_unlock(&(p->ctx->print_lock)) < 0)
+	if (pthread_mutex_lock(lock->mutex) < 0)
 		return (-1);
+	lock->is_locked = TRUE;
 	return (0);
 }

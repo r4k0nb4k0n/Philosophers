@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 00:21:26 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 20:03:14 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ int	ft_philo_eat(t_philo *p)
 {
 	if (ft_msleep(p->ctx->time_to_eat) < 0)
 		return (-1);
-	if (pthread_mutex_unlock(p->fork_locks[p->num % 2]) < 0)
+	if (ft_unlock(p->fork_locks[LEFT]) < 0)
 		return (-1);
-	if (pthread_mutex_unlock(p->fork_locks[(p->num + 1) % 2]) < 0)
+	if (ft_unlock(p->fork_locks[RIGHT]) < 0)
 		return (-1);
 	if (p->ctx->num_of_times_each_philo_must_eat > 0)
 	{
-		p->num_of_times_each_philo_must_eat--;
-		if (p->num_of_times_each_philo_must_eat <= 0)
-			p->status = STA_PHILO_DIED;
+		if (--(p->num_of_times_each_philo_must_eat) == 0)
+			p->ctx->num_of_philos_done_must_eat++;
 	}
 	return (0);
 }

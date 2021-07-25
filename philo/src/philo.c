@@ -6,13 +6,13 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:36:39 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/24 17:41:17 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 19:34:57 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_prep_and_work(t_context *ctx, pthread_mutex_t **f_locks, t_philo **ps)
+int	ft_prep_and_work(t_context *ctx, t_lock **f_locks, t_philo **ps)
 {
 	int	res;
 
@@ -42,7 +42,7 @@ int	ft_prep_and_work(t_context *ctx, pthread_mutex_t **f_locks, t_philo **ps)
 int	main(int ac, char **av)
 {
 	t_context		ctx;
-	pthread_mutex_t	*fork_locks;
+	t_lock			*fork_locks;
 	t_philo			*philos;
 
 	if (ac < 5 || ac > 6 || !ft_check_if_strs_int_format(ac - 1, av + 1))

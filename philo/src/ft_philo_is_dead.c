@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_msleep.c                                        :+:      :+:    :+:   */
+/*   ft_philo_is_dead.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 15:48:52 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 20:55:15 by hyechoi          ###   ########.fr       */
+/*   Created: 2021/07/25 20:00:01 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/07/25 20:00:22 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*
-**	Loop `usleep(100)` `ms` times.
-**
-**	@param	long		microseconds
-**	@return	int			status			Return 0 if success.
-**										Return -1 if failure.
-*/
-
-int	ft_msleep(long milliseconds)
+int	ft_philo_is_dead_suddenly(t_philo *p)
 {
-	volatile long	prev;
-	volatile long	curr;
+	return (p->status == STA_PHILO_DIED
+			&& (p->ctx->num_of_times_each_philo_must_eat == 0
+			|| !ft_philo_is_done_must_eat(p)));
+}
 
-	prev = ft_get_timestamp_ms();
-	if (prev < 0)
-		return (-1);
-	while (TRUE)
-	{
-		usleep(199);
-		curr = ft_get_timestamp_ms();
-		if (curr - prev >= milliseconds)
-			break ;
-	}
-	return (0);
+int	ft_philo_is_dead(t_philo *p)
+{
+	return (p->status == STA_PHILO_DIED
+		|| p->ctx->killswitch == TRUE
+		|| (p->ctx->num_of_times_each_philo_must_eat > 0
+		&& p->ctx->num_of_philos == p->ctx->num_of_philos_done_must_eat));
 }

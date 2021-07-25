@@ -6,7 +6,7 @@
 #    By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 03:29:59 by hyechoi           #+#    #+#              #
-#    Updated: 2021/07/24 23:51:30 by hyechoi          ###   ########.fr        #
+#    Updated: 2021/07/25 20:01:31 by hyechoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,12 @@ SRC_FILE = ft_character.c ft_string.c ft_putchar_fd.c ft_putnbr_fd.c\
 			ft_putstr_fd.c ft_error.c ft_msleep.c\
 			ft_check_if_str_int_format.c\
 			ft_init_context_philo.c ft_init_fork_locks.c ft_clean_fork_locks.c\
-			ft_calc_elapsed_timeval.c\
+			ft_trylock.c ft_unlock.c\
+			ft_get_timestamp_ms.c\
 			ft_init_philos.c ft_print_philosopher_status.c\
+			ft_philo_is_dead.c\
 			ft_philo_think.c ft_philo_eat.c ft_philo_sleep.c\
+			ft_philo_is_done_must_eat.c\
 			ft_watch_philos.c\
 			ft_run_philo_life.c ft_simulate_dining_philosophers.c\
 			ft_clean_dining_philosophers.c\

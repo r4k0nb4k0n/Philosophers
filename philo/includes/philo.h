@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 00:19:19 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 20:01:14 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,26 +86,33 @@
 
 typedef struct timeval t_timeval;
 
+typedef struct s_lock
+{
+	volatile int	is_locked;
+	pthread_mutex_t	*mutex;
+}	t_lock;
+
 typedef struct s_context
 {
 	int				num_of_philos;
+	volatile int	num_of_philos_done_must_eat;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_times_each_philo_must_eat;
-	t_timeval		timestamp;
-	pthread_mutex_t	print_lock;
-	int				killswitch;
+	volatile long	timestamp;
+	t_lock			print_lock;
+	volatile int	killswitch;
 }	t_context;
 
 typedef struct s_philo
 {
 	int				num;
-	int				status;
-	int				num_of_times_each_philo_must_eat;
-	t_timeval		timestamp;
+	volatile int	status;
+	volatile int	num_of_times_each_philo_must_eat;
+	volatile long	timestamp;
 	t_context		*ctx;
-	pthread_mutex_t	*fork_locks[2];
+	t_lock			*fork_locks[2];
 	pthread_t		thread;
 }	t_philo;
 
@@ -156,7 +163,7 @@ void	ft_print_usage(void);
 **	ft_msleep.c
 */
 
-int		ft_msleep(useconds_t milliseconds);
+int		ft_msleep(long milliseconds);
 
 /*
 **	ft_check_if_str_int_format.c
@@ -175,32 +182,50 @@ int		ft_init_context_philo(t_context *ctx, int paramc, char **paramv);
 **	ft_init_fork_locks.c
 */
 
-int		ft_init_fork_locks(pthread_mutex_t **fork_locks, int num_of_forks);
+int		ft_init_fork_locks(t_lock **fork_locks, int num_of_forks);
 
 /*
 **	ft_clean_fork_locks.c
 */
 
-int		ft_clean_fork_locks(pthread_mutex_t **fork_locks, int num_of_forks);
+int		ft_clean_fork_locks(t_lock **fork_locks, int num_of_forks);
+
+/*
+**	ft_trylock.c
+*/
+
+int		ft_trylock(t_lock *lock);
+
+/*
+**	ft_unlock.c
+*/
+
+int		ft_unlock(t_lock *lock);
 
 /*
 **	ft_init_philos.c
 */
 
-int		ft_init_philos(t_philo **philos, t_context *ctx,
-		pthread_mutex_t *fork_locks);
+int		ft_init_philos(t_philo **philos, t_context *ctx, t_lock *fork_locks);
 
 /*
-**	ft_calc_elapsed_timeval.c
+**	ft_get_timestamp_ms.c
 */
 
-long	ft_calc_elapsed_timeval(t_timeval before, t_timeval after);
+long	ft_get_timestamp_ms(void);
 
 /*
 **	ft_print_philosopher_status.c
 */
 
 int		ft_print_philosopher_status(t_philo *philo, char *msg);
+
+/*
+**	ft_philo_is_dead.c
+*/
+
+int	ft_philo_is_dead_suddenly(t_philo *p);
+int	ft_philo_is_dead(t_philo *p);
 
 /*
 **	ft_philo_think.c
@@ -219,6 +244,12 @@ int		ft_philo_eat(t_philo *p);
 */
 
 int		ft_philo_sleep(t_philo *p);
+
+/*
+**	ft_philo_is_done_must_eat.c
+*/
+
+int		ft_philo_is_done_must_eat(t_philo *p);
 
 /*
 **	ft_run_philo_life.c
@@ -242,7 +273,7 @@ int		ft_simulate_dining_philosophers(t_context *ctx, t_philo *philos);
 **	ft_clean_dining_philosphers.c
 */
 
-void	ft_clean_dining_philosophers(t_context *ctx,
-		pthread_mutex_t **fork_locks, t_philo **philos);
+void	ft_clean_dining_philosophers(t_context *ctx, t_lock **fork_locks,
+		t_philo **philos);
 
 #endif

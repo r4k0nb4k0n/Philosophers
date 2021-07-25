@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 18:21:10 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/24 19:41:57 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 19:39:05 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@ int	ft_init_context_philo(t_context *ctx, int paramc, char **paramv)
 		ctx->time_to_eat < 0 || ctx->time_to_sleep < 0 ||
 		(paramc == 5 && ctx->num_of_times_each_philo_must_eat < 1))
 		return (-1);
-	if (pthread_mutex_init(&(ctx->print_lock), NULL) != 0)
+	(ctx->print_lock).mutex = malloc(sizeof(pthread_mutex_t));
+	if ((ctx->print_lock).mutex == NULL)
 		return (-1);
-	if (gettimeofday(&(ctx->timestamp), NULL) < 0)
+	if (pthread_mutex_init((ctx->print_lock).mutex, NULL) != 0)
+		return (-1);
+	ctx->timestamp = ft_get_timestamp_ms();
+	if (ctx->timestamp < 0)
 		return (-1);
 	return (0);
 }
