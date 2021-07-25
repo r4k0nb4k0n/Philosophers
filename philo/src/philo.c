@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:36:39 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 19:34:57 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/25 23:09:43 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_prep_and_work(t_context *ctx, t_lock **f_locks, t_philo **ps)
 	res = ft_init_philos(ps, ctx, *f_locks);
 	if (res >= 0)
 		res = ft_simulate_dining_philosophers(ctx, *ps);
+	if (ft_msleep(1000) < 0)
+		return (-1);
 	ft_clean_dining_philosophers(ctx, f_locks, ps);
 	return (res);
 }

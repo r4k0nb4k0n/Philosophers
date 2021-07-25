@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:20:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 21:34:32 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 00:22:19 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 int	ft_philo_think(t_philo *p)
 {
-	while (ft_trylock(p->fork_locks[p->num % 2]) < 0)
+	while (ft_trylock(p->fork_locks[(p->num + 1) % 2]) < 0)
 	{
 		if (ft_philo_is_dead(p))
 			return (-1);
@@ -37,7 +37,7 @@ int	ft_philo_think(t_philo *p)
 		if (ft_philo_is_dead(p))
 			return (-1);
 	}
-	while (ft_trylock(p->fork_locks[(p->num + 1) % 2]) < 0)
+	while (ft_trylock(p->fork_locks[p->num % 2]) < 0)
 	{
 		if (ft_philo_is_dead(p))
 			return (-1);

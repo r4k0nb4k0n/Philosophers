@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 18:34:24 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 00:30:38 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@
 
 int		ft_check_if_philo_starve(t_philo *p)
 {
-	volatile long	curr;
+	long	elapsed;
+	long	prev_ts;
 
-	curr = ft_get_timestamp_ms();
-	if (curr < 0)
-		return (-1);
-	return ((curr - p->timestamp) > p->ctx->time_to_die
-			&& p->status == STA_PHILO_THINKING);
+	prev_ts = p->timestamp;
+	if (p->status != STA_PHILO_EATING)
+	{
+		elapsed = ft_get_timestamp_ms();
+		if (elapsed < 0)
+			return (-1);
+		elapsed -= prev_ts;
+		return (elapsed >= p->ctx->time_to_die);
+	}
+	return (FALSE);
 }
 
 void	ft_handle_when_philo_starve(t_philo *p)
