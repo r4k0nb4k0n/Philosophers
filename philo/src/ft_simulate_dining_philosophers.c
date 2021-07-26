@@ -6,11 +6,28 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:33:12 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 02:35:41 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 14:27:49 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int		ft_create_threads_of_philos_param(t_context *ctx, t_philo *philos,
+		int	start, int gap)
+{
+	int	i;
+
+	i = start;
+	while (i < ctx->num_of_philos)
+	{
+		ft_msleep(4);
+		if (pthread_create(&(philos[i].thread), NULL, &ft_run_philo_life,
+			(void *)(philos + i)) != 0)
+			return (-1);
+		i += gap;
+	}
+	return (0);
+}
 
 /*
 **	Create threads of philos.
@@ -23,15 +40,17 @@
 
 int		ft_create_threads_of_philos(t_context *ctx, t_philo *philos)
 {
-	int	i;
-
-	i = 0;
-	while (i < ctx->num_of_philos)
+	if (ctx->num_of_philos % 2 == 0)
 	{
-		if (pthread_create(&(philos[i].thread), NULL, &ft_run_philo_life,
-			(void *)(philos + i)) != 0)
+		if (ft_create_threads_of_philos_param(ctx, philos, 0, 2) < 0)
 			return (-1);
-		i++;
+		if (ft_create_threads_of_philos_param(ctx, philos, 1, 2) < 0)
+			return (-1);
+	}
+	else
+	{
+		if (ft_create_threads_of_philos_param(ctx, philos, 0, 1) < 0)
+			return (-1);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/26 05:18:12 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 12:28:34 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_check_if_philo_starve(t_philo *p)
 	if (elapsed < 0)
 		return (FALSE);
 	elapsed -= prev_ts;
-	return (elapsed >= p->ctx->time_to_die);
+	return (elapsed > p->ctx->time_to_die);
 }
 
 void	ft_handle_when_philo_starve(t_philo *p, int *num_of_alive)
