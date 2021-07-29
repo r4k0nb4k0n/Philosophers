@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/29 20:03:28 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/29 20:19:38 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,18 @@
 **	.. void free(void *ptr);
 **	<unistd.h>
 **	.. ssize_t write(int filedes, const void *buf, size_t nbyte);
+**	.. int usleep(useconds_t microseconds);
 **	<string.h>
 **	.. void *memset(void *b, int c, size_t len);
 **	<pthread.h>
+**	.. int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+**	.. void *(*start_routine)(void *), void *arg);
+**	.. int pthread_join(pthread_t thread, void **value_ptr);
 **	.. int pthread_mutex_init(pthread_mutex_t *mutex,
 **	.. const pthread_mutexattr_t *attr);
 **	.. int pthread_mutex_destroy(pthread_mutex_t *mutex);
+**	.. int pthread_mutex_lock(pthread_mutex_t *mutex);
+**	.. int pthread_mutex_unlock(pthread_mutex_t *mutex);
 **	<sys/time.h>
 **	.. int gettimeofday(struct timeval *restrict tp, void *restrict tzp);
 */
