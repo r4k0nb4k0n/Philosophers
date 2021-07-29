@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:24:50 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 21:24:05 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/29 20:06:12 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 **							Return -1 if failure
 */
 
-int		ft_print_philo_status(t_philo *p, char *msg)
+int	ft_print_philo_status(t_philo *p, char *msg)
 {
 	long	curr;
 

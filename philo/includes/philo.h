@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/26 04:57:11 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/29 20:03:28 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@
 **	Define necessary typedef and struct
 */
 
-typedef struct timeval t_timeval;
+typedef struct timeval	t_timeval;
 
 typedef struct s_lock
 {
@@ -170,7 +170,7 @@ int		ft_msleep(long milliseconds);
 */
 
 int		ft_check_philo_status_for_ms(t_philo *p, int expected,
-		long milliseconds);
+			long milliseconds);
 
 /*
 **	ft_check_if_str_int_format.c
@@ -231,8 +231,8 @@ int		ft_print_philo_status(t_philo *philo, char *msg);
 **	ft_philo_is_dead.c
 */
 
-int	ft_philo_is_dead_suddenly(t_philo *p);
-int	ft_philo_is_dead(t_philo *p);
+int		ft_philo_is_dead_suddenly(t_philo *p);
+int		ft_philo_is_dead(t_philo *p);
 
 /*
 **	ft_philo_think.c
@@ -282,6 +282,6 @@ int		ft_simulate_dining_philosophers(t_context *ctx, t_philo *philos);
 */
 
 void	ft_clean_dining_philosophers(t_context *ctx, t_lock **fork_locks,
-		t_philo **philos);
+			t_philo **philos);
 
 #endif

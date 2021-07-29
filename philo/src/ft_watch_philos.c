@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/26 12:28:34 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/29 20:04:23 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Handle when target philosopher starves.
 */
 
-int		ft_check_if_philo_starve(t_philo *p)
+int	ft_check_if_philo_starve(t_philo *p)
 {
 	long	elapsed;
 	long	prev_ts;
@@ -37,7 +37,7 @@ void	ft_handle_when_philo_starve(t_philo *p, int *num_of_alive)
 	*num_of_alive -= 1;
 }
 
-int		ft_check_if_just_one_dead_when_unlimited(t_philo *p, int num_of_alive)
+int	ft_check_if_just_one_dead_when_unlimited(t_philo *p, int num_of_alive)
 {
 	if (p->ctx->num_of_times_each_philo_must_eat == 0
 		&& p->ctx->num_of_philos == num_of_alive + 1)

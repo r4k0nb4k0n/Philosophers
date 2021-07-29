@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 18:21:10 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/25 19:39:05 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/07/29 20:08:36 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	ft_init_context_philo(t_context *ctx, int paramc, char **paramv)
 	ctx->time_to_sleep = ft_atoi(paramv[3]);
 	if (paramc == 5)
 		ctx->num_of_times_each_philo_must_eat = ft_atoi(paramv[4]);
-	if (ctx->num_of_philos < 1 || ctx->time_to_die < 0 ||
-		ctx->time_to_eat < 0 || ctx->time_to_sleep < 0 ||
-		(paramc == 5 && ctx->num_of_times_each_philo_must_eat < 1))
+	if (ctx->num_of_philos < 1 || ctx->time_to_die < 0
+		|| ctx->time_to_eat < 0 || ctx->time_to_sleep < 0
+		|| (paramc == 5 && ctx->num_of_times_each_philo_must_eat < 1))
 		return (-1);
 	(ctx->print_lock).mutex = malloc(sizeof(pthread_mutex_t));
 	if ((ctx->print_lock).mutex == NULL)
