@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/29 20:19:38 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/02 15:21:34 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct s_philo
 	volatile int	num_of_times_each_philo_must_eat;
 	volatile long	timestamp;
 	t_context		*ctx;
+	t_lock			life_lock;
 	t_lock			*fork_locks[2];
 	pthread_t		thread;
 }	t_philo;

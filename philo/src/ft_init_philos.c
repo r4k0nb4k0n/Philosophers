@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 20:25:10 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/29 20:04:53 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/02 15:25:05 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	ft_init_philos(t_philo **philos, t_context *ctx, t_lock *fork_locks)
 		(*philos + i)->num_of_times_each_philo_must_eat
 			= ctx->num_of_times_each_philo_must_eat;
 		(*philos + i)->timestamp = ft_get_timestamp_ms();
+		((*philos + i)->life_lock).mutex = malloc(sizeof(pthread_mutex_t));
+		if (((*philos + i)->life_lock).mutex == NULL)
+			break ;
+		if (pthread_mutex_init(((*philos + i)->life_lock).mutex, NULL) != 0)
+			break ;
 		(*philos + i)->fork_locks[RIGHT] = fork_locks + i;
 		(*philos + i)->fork_locks[LEFT] = fork_locks
 			+ (i + ctx->num_of_philos - 1) % ctx->num_of_philos;

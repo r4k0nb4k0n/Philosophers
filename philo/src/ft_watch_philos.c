@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/29 20:04:23 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/02 16:01:20 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	ft_check_if_philo_starve(t_philo *p)
 
 void	ft_handle_when_philo_starve(t_philo *p, int *num_of_alive)
 {
+	ft_unlock(&(p->life_lock));
 	p->status = STA_PHILO_DIED;
 	if (p->ctx->num_of_times_each_philo_must_eat == 0)
 		p->ctx->killswitch = TRUE;
@@ -43,6 +44,29 @@ int	ft_check_if_just_one_dead_when_unlimited(t_philo *p, int num_of_alive)
 		&& p->ctx->num_of_philos == num_of_alive + 1)
 		return (0);
 	return (-1);
+}
+
+int	ft_check_alive_after_watch_philos(t_philo *p, int num_of_alive)
+{
+	int	i;
+
+	i = 0;
+	while (num_of_alive > 0)
+	{
+		if (i == 0)
+		{
+			ft_msleep(5);
+			num_of_alive = p->ctx->num_of_philos;
+		}
+		if (ft_check_if_just_one_dead_when_unlimited(p, num_of_alive) == 0)
+			break ;
+		if (p->status == STA_PHILO_DIED || ft_philo_is_done_must_eat(p))
+			num_of_alive--;
+		else if (ft_check_if_philo_starve(p + i) == TRUE)
+			ft_handle_when_philo_starve(p + i, &num_of_alive);
+		i = (i + 1) % p->ctx->num_of_philos;
+	}
+	return (num_of_alive);
 }
 
 /*
@@ -66,21 +90,20 @@ void	*ft_watch_philos(void *philos)
 
 	p = (t_philo *)philos;
 	i = 0;
-	num_of_alive = p->ctx->num_of_philos;
-	while (num_of_alive > 0)
+	while (i < p->ctx->num_of_philos)
 	{
-		if (i == 0)
-		{
-			ft_msleep(5);
-			num_of_alive = p->ctx->num_of_philos;
-		}
-		if (ft_check_if_just_one_dead_when_unlimited(p, num_of_alive) == 0)
-			break ;
-		if (p->status == STA_PHILO_DIED || ft_philo_is_done_must_eat(p))
-			num_of_alive--;
-		else if (ft_check_if_philo_starve(p + i) == TRUE)
-			ft_handle_when_philo_starve(p + i, &num_of_alive);
-		i = (i + 1) % p->ctx->num_of_philos;
+		while (ft_trylock(&((p + i)->life_lock)) == 0
+				&& ft_philo_is_dead(p + i))
+			return ((void *)(-1));
+		i++;
+	}
+	num_of_alive = ft_check_alive_after_watch_philos(p, p->ctx->num_of_philos);
+	i = 0;
+	while (i < p->ctx->num_of_philos)
+	{
+		if (ft_unlock(&((p + i)->life_lock)) < 0)
+			return ((void *)(-1));
+		i++;
 	}
 	if (num_of_alive == 0)
 		return (NULL);
