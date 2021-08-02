@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/02 18:12:03 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/02 18:16:33 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	*ft_watch_philos(void *philos)
 	while (i < p->ctx->num_of_philos)
 	{
 		while (ft_trylock(&((p + i)->life_lock)) == 0
-				&& ft_philo_is_dead(p + i))
+			&& ft_philo_is_dead(p + i))
 			return ((void *)(-1));
 		i++;
 	}
