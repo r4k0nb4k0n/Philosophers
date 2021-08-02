@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/29 20:08:09 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/02 17:51:44 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*ft_run_philo_life(void *philo)
 	}
 	if (ft_philo_drop_forks(p) < 0)
 		return ((void *)(-1));
-	if ((p->status == STA_PHILO_DIED
+	if (((!((p->life_lock).is_locked) || p->status == STA_PHILO_DIED)
 			&& ft_print_philo_status(p, MSG_PHILO_DIED) < 0)
 		|| ft_philo_is_dead_suddenly(p))
 		return ((void *)(-1));

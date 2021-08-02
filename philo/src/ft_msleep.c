@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:48:52 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/26 04:55:59 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/02 17:30:23 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_msleep(long milliseconds)
 		return (-1);
 	while (TRUE)
 	{
-		if (usleep(100) < 0)
+		if (usleep(125) < 0)
 			return (-1);
 		if (ft_get_timestamp_ms() - prev >= milliseconds)
 			break ;
