@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/26 04:58:30 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/02 15:13:04 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ int	ft_philo_eat(t_philo *p)
 		return (-1);
 	if (ft_philo_drop_forks(p) < 0)
 		return (-1);
-	if (p->ctx->num_of_times_each_philo_must_eat > 0)
-	{
-		if (--(p->num_of_times_each_philo_must_eat) == 0)
-			p->ctx->num_of_philos_done_must_eat++;
-	}
+	if (p->ctx->num_of_times_each_philo_must_eat > 0
+		&& --(p->num_of_times_each_philo_must_eat) == 0)
+		p->ctx->num_of_philos_done_must_eat++;
 	p->timestamp = ft_get_timestamp_ms();
 	if (p->timestamp < 0)
 		return (-1);
