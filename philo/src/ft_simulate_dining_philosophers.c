@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:33:12 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/02 19:06:00 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/03 14:27:55 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	ft_create_threads_of_philos(t_context *ctx, t_philo *philos)
 	}
 	else
 	{
-		if (ft_create_threads_of_philos_param(ctx, philos, 0, 1) < 0)
+		if (ft_create_threads_of_philos_param(ctx, philos, 1, 2) < 0)
+			return (-1);
+		if (ft_create_threads_of_philos_param(ctx, philos, 0, 2) < 0)
 			return (-1);
 	}
 	return (0);
