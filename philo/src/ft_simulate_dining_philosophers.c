@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:33:12 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/03 14:27:55 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/05 16:33:17 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	ft_create_threads_of_philos_param(t_context *ctx, t_philo *philos,
 	i = start;
 	while (i < ctx->num_of_philos)
 	{
-		ft_msleep(10);
+		if (usleep(50) < 0)
+			return (-1);
 		if (pthread_create(&(philos[i].thread), NULL, &ft_run_philo_life,
 				(void *)(philos + i)) != 0)
 			return (-1);
