@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/02 15:21:34 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/12 18:29:49 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,14 @@
 **	Define necessary macros about philosopher status.
 */
 
-# define STA_PHILO_THINKING 0
-# define STA_PHILO_EATING 1
-# define STA_PHILO_SLEEPING 2
+# define STA_PHILO_ALIVE 0
 # define STA_PHILO_DIED -1
 # define MSG_PHILO_THINKING "is thinking\n"
 # define MSG_PHILO_TAKEN_FORK "has taken a fork\n"
 # define MSG_PHILO_EATING "is eating\n"
 # define MSG_PHILO_SLEEPING "is sleeping\n"
 # define MSG_PHILO_DIED "died\n"
+# define MSG_PHILO_FINISHED_MUST_EAT "is the last guy done must eat\n"
 
 /*
 **	Define necessary macros.
@@ -85,6 +84,9 @@
 # define FALSE 0
 # define LEFT 0
 # define RIGHT 1
+# define ODD 0
+# define EVEN 1
+# define ODD_LAST 2
 
 /*
 **	Define necessary typedef and struct
@@ -101,24 +103,27 @@ typedef struct s_lock
 typedef struct s_context
 {
 	int				num_of_philos;
-	volatile int	num_of_philos_done_must_eat;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_times_each_philo_must_eat;
-	volatile long	timestamp;
+	long			timestamp;
 	t_lock			print_lock;
+	t_lock			turn_lock;
 	volatile int	killswitch;
+	volatile int	num_of_philos_done_must_eat;
+	volatile int	turn;
 }	t_context;
 
 typedef struct s_philo
 {
 	int				num;
 	volatile int	status;
+	volatile int	is_full;
 	volatile int	num_of_times_each_philo_must_eat;
 	volatile long	timestamp;
 	t_context		*ctx;
-	t_lock			life_lock;
+	t_lock			act_lock;
 	t_lock			*fork_locks[2];
 	pthread_t		thread;
 }	t_philo;
@@ -176,8 +181,7 @@ int		ft_msleep(long milliseconds);
 **	ft_check_philo_status_for_ms.c
 */
 
-int		ft_check_philo_status_for_ms(t_philo *p, int expected,
-			long milliseconds);
+int		ft_check_philo_status_for_ms(t_philo *p, long milliseconds);
 
 /*
 **	ft_check_if_str_int_format.c
@@ -242,6 +246,18 @@ int		ft_philo_is_dead_suddenly(t_philo *p);
 int		ft_philo_is_dead(t_philo *p);
 
 /*
+**	ft_philo_take_forks.c
+*/
+
+int		ft_philo_take_forks(t_philo *p);
+
+/*
+**	ft_philo_drop_forks.c
+*/
+
+int		ft_philo_drop_forks(t_philo *p);
+
+/*
 **	ft_philo_think.c
 */
 
@@ -251,7 +267,6 @@ int		ft_philo_think(t_philo *p);
 **	ft_philo_eat.c
 */
 
-int		ft_philo_drop_forks(t_philo *p);
 int		ft_philo_eat(t_philo *p);
 
 /*

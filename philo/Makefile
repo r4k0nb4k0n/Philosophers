@@ -6,7 +6,7 @@
 #    By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 03:29:59 by hyechoi           #+#    #+#              #
-#    Updated: 2021/07/26 04:57:30 by hyechoi          ###   ########.fr        #
+#    Updated: 2021/08/11 17:57:59 by hyechoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_FILE = ft_character.c ft_string.c ft_putchar_fd.c ft_putnbr_fd.c\
 			ft_get_timestamp_ms.c\
 			ft_init_philos.c ft_print_philo_status.c\
 			ft_philo_is_dead.c\
+            ft_philo_take_forks.c ft_philo_drop_forks.c\
 			ft_philo_think.c ft_philo_eat.c ft_philo_sleep.c\
 			ft_philo_is_done_must_eat.c\
 			ft_watch_philos.c\
