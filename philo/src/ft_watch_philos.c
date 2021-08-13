@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 16:42:38 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 17:11:02 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	*ft_watch_philos(void *philos)
 		|| p->ctx->num_of_philos_done_must_eat
 		!= p->ctx->num_of_times_each_philo_must_eat)
 	{
+		p->ctx->current_timestamp = ft_get_timestamp_ms();
+		if (p->ctx->current_timestamp < 0)
+			p->ctx->killswitch = TRUE;
 		if (ft_philo_is_dead(p))
 			return ((void *)(-1));
 		if (ft_check_half_of_philos_have_eaten(p))

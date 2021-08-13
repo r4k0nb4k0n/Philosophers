@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 20:00:01 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 15:30:07 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 17:05:59 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_philo_is_dead_suddenly(t_philo *p)
 
 int	ft_philo_is_dead(t_philo *p)
 {
-	if (ft_get_timestamp_ms() - p->ctx->time_to_die >= p->timestamp
+	if (p->ctx->current_timestamp - p->ctx->time_to_die >= p->timestamp
 		&& (p->status != STA_PHILO_DIED && p->ctx->killswitch != TRUE))
 	{
 		p->status = STA_PHILO_DIED;

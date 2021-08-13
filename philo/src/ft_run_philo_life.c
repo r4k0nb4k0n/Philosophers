@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 15:55:33 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 17:09:42 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ int	ft_loop_philo_life(t_philo *p)
 {
 	if (ft_trylock(&(p->act_lock)) < 0)
 		return (-1);
-	p->timestamp = ft_get_timestamp_ms();
-	if (p->timestamp < 0)
-		return (-1);
+	p->timestamp = p->ctx->current_timestamp;
 	p->is_full = FALSE;
     if (ft_philo_take_forks(p) < 0)
 		return (0);

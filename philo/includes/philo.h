@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 15:54:34 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 17:04:27 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_context
 	int				time_to_sleep;
 	int				num_of_times_each_philo_must_eat;
 	long			timestamp;
+	volatile long	current_timestamp;
 	t_lock			print_lock;
 	volatile int	killswitch;
 	volatile int	num_of_philos_done_must_eat;

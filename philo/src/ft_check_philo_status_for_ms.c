@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 04:50:28 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 16:37:19 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 17:11:59 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ int	ft_check_philo_status_for_ms(t_philo *p, long milliseconds)
 {
 	long	threshold;
 
-	threshold = ft_get_timestamp_ms();
-	if (threshold < 0)
-		return (-1);
-	threshold += milliseconds;
-	while (ft_get_timestamp_ms() < threshold)
+	threshold = p->ctx->current_timestamp + milliseconds;
+	while (p->ctx->current_timestamp < threshold)
 	{
 		if (ft_philo_is_dead(p))
 			return (-1);

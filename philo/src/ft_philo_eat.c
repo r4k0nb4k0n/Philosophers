@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 15:07:41 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 17:12:54 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void	ft_philo_check_must_eat(t_philo *p)
 
 int	ft_philo_eat(t_philo *p)
 {
-	p->timestamp = ft_get_timestamp_ms();
-	if (p->timestamp < 0)
-		return (-1);
+	p->timestamp = p->ctx->current_timestamp;
 	p->is_full = TRUE;
 	if (ft_print_philo_status(p, MSG_PHILO_EATING) < 0)
 		return (-1);
