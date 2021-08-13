@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philo_is_dead.c                                 :+:      :+:    :+:   */
+/*   ft_print_alert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 20:00:01 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 15:30:07 by hyechoi          ###   ########.fr       */
+/*   Created: 2021/07/23 18:24:50 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/08/13 14:07:07 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_philo_is_dead_suddenly(t_philo *p)
-{
-	return (p->status == STA_PHILO_DIED);
-}
+/*
+**	Print alert message.
+**
+**	@param	t_philo	*philo
+**	@param	char	*msg
+**	@return	int		res		Return 0 if success
+**							Return -1 if failure
+*/
 
-int	ft_philo_is_dead(t_philo *p)
+int	ft_print_alert(t_lock *print_lock, char *msg)
 {
-	if (ft_get_timestamp_ms() - p->ctx->time_to_die >= p->timestamp
-		&& (p->status != STA_PHILO_DIED && p->ctx->killswitch != TRUE))
+	while (TRUE)
 	{
-		p->status = STA_PHILO_DIED;
-		p->ctx->killswitch = TRUE;
-		ft_print_philo_status(p, MSG_PHILO_DIED);
+		if (ft_trylock(print_lock) >= 0)
+			break ;
 	}
-	return (p->ctx->killswitch == TRUE
-		|| p->status == STA_PHILO_DIED);
+	printf("%s", msg);
+	if (ft_unlock(print_lock) < 0)
+		return (-1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/12 18:29:49 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 15:54:34 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@
 # define MSG_PHILO_EATING "is eating\n"
 # define MSG_PHILO_SLEEPING "is sleeping\n"
 # define MSG_PHILO_DIED "died\n"
-# define MSG_PHILO_FINISHED_MUST_EAT "is the last guy done must eat\n"
+# define MSG_PHILO_FINISHED_MUST_EAT "all philos have finished must eat\n"
 
 /*
 **	Define necessary macros.
@@ -109,7 +109,6 @@ typedef struct s_context
 	int				num_of_times_each_philo_must_eat;
 	long			timestamp;
 	t_lock			print_lock;
-	t_lock			turn_lock;
 	volatile int	killswitch;
 	volatile int	num_of_philos_done_must_eat;
 	volatile int	turn;
@@ -237,6 +236,12 @@ long	ft_get_timestamp_ms(void);
 */
 
 int		ft_print_philo_status(t_philo *philo, char *msg);
+
+/*
+**	ft_print_alert.c
+*/
+
+int		ft_print_alert(t_lock *print_lock, char *msg);
 
 /*
 **	ft_philo_is_dead.c

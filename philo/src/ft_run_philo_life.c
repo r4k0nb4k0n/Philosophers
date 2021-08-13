@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/12 10:52:44 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 15:55:33 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ int	ft_loop_philo_life(t_philo *p)
 	}
 	if (ft_unlock(&(p->act_lock)) < 0)
 		return (-1);
-	if (ft_unlock(&(p->ctx->turn_lock)) < 0)
-		return (-1);
 	return (0);
 }
 
@@ -94,11 +92,7 @@ void	*ft_run_philo_life(void *philo)
 	p = (t_philo *)philo;
 	if (ft_loop_philo_life(p) < 0)
 		return ((void *)(-1));
-	if (p->status == STA_PHILO_DIED
-		&& ft_print_philo_status(p, MSG_PHILO_DIED) < 0)
-		return ((void *)(-1));
-	if (p->ctx->num_of_philos_done_must_eat == p->ctx->num_of_philos
-		&& ft_print_philo_status(p, MSG_PHILO_FINISHED_MUST_EAT) < 0)
+	if (ft_msleep(10) < 0)
 		return ((void *)(-1));
 	if (ft_clean_philo_life(p) < 0)
 		return ((void *)(-1));

@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 18:21:10 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/12 18:36:23 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 15:54:18 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_init_context_philo(t_context *ctx, int paramc, char **paramv)
 	ctx->time_to_eat = ft_atoi(paramv[2]);
 	ctx->time_to_sleep = ft_atoi(paramv[3]);
 	ctx->turn = ODD;
+	if (ctx->num_of_philos % 2 == 1)
+		ctx->turn = ODD_LAST;
 	if (paramc == 5)
 		ctx->num_of_times_each_philo_must_eat = ft_atoi(paramv[4]);
 	if (ctx->num_of_philos < 1 || ctx->time_to_die < 0
@@ -38,9 +40,6 @@ int	ft_init_context_philo(t_context *ctx, int paramc, char **paramv)
 		return (-1);
 	(ctx->print_lock).mutex = malloc(sizeof(pthread_mutex_t));
 	if ((ctx->print_lock).mutex == NULL)
-		return (-1);
-	(ctx->turn_lock).mutex = malloc(sizeof(pthread_mutex_t));
-	if ((ctx->turn_lock).mutex == NULL)
 		return (-1);
 	if (pthread_mutex_init((ctx->print_lock).mutex, NULL) != 0)
 		return (-1);

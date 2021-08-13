@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/12 19:43:45 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 15:07:41 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void	ft_philo_check_must_eat(t_philo *p)
 		&& --(p->num_of_times_each_philo_must_eat) == 0)
 	{
 		p->ctx->num_of_philos_done_must_eat++;
-		if (p->ctx->num_of_philos_done_must_eat == p->ctx->num_of_philos)
+		if (p->ctx->num_of_philos_done_must_eat == p->ctx->num_of_philos) {
 			p->ctx->killswitch = TRUE;
+			ft_print_alert(&(p->ctx->print_lock),
+			MSG_PHILO_FINISHED_MUST_EAT);
+		}
 	}
 }
 

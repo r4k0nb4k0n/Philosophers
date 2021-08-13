@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:33:12 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/12 17:58:10 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/13 16:40:07 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ft_create_threads_of_philos_param(t_context *ctx, t_philo *philos,
 	i = start;
 	while (i < ctx->num_of_philos)
 	{
-		usleep(50);
 		if (pthread_create(&(philos[i].thread), NULL, &ft_run_philo_life,
 				(void *)(philos + i)) != 0)
 			return (-1);
@@ -40,20 +39,8 @@ int	ft_create_threads_of_philos_param(t_context *ctx, t_philo *philos,
 
 int	ft_create_threads_of_philos(t_context *ctx, t_philo *philos)
 {
-	if (ctx->num_of_philos % 2 == 0)
-	{
-		if (ft_create_threads_of_philos_param(ctx, philos, 0, 2) < 0)
-			return (-1);
-		if (ft_create_threads_of_philos_param(ctx, philos, 1, 2) < 0)
-			return (-1);
-	}
-	else
-	{
-		if (ft_create_threads_of_philos_param(ctx, philos, 1, 2) < 0)
-			return (-1);
-		if (ft_create_threads_of_philos_param(ctx, philos, 0, 2) < 0)
-			return (-1);
-	}
+	if (ft_create_threads_of_philos_param(ctx, philos, 0, 1) < 0)
+		return (-1);
 	return (0);
 }
 
@@ -79,7 +66,7 @@ int	ft_join_threads_of_philos(t_context *ctx, t_philo *philos)
 		if (pthread_join(philos[i].thread, (void **)&res) != 0)
 		{
 			if (res < 0)
-				ret = res;
+				ret = -1;
 		}
 		i++;
 	}
@@ -105,10 +92,13 @@ int	ft_simulate_dining_philosophers(t_context *ctx, t_philo *philos)
 		return (-1);
 	if (ft_create_threads_of_philos(ctx, philos) < 0)
 		return (-1);
+	if (pthread_join(watcher, (void **)&res_watcher) != 0)
+	{
+		if (res_watcher < 0)
+			return (res_watcher);
+	}
 	res_philos = ft_join_threads_of_philos(ctx, philos);
 	if (res_philos < 0)
 		return (res_philos);
-	if (pthread_join(watcher, (void **)&res_watcher) != 0)
-		return (res_watcher);
 	return (0);
 }
