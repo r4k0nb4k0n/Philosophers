@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:24:50 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 17:13:54 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/16 20:03:33 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 int	ft_print_philo_status(t_philo *p, char *msg)
 {
-	int		msglen;
+	int	msglen;
 
 	msglen = ft_strlen(msg);
 	while (ft_trylock(&(p->ctx->print_lock)) < 0)
@@ -36,7 +36,7 @@ int	ft_print_philo_status(t_philo *p, char *msg)
 	if (ft_strncmp(msg, MSG_PHILO_DIED, msglen) == 0
 		|| !ft_philo_is_dead(p))
 		printf("%ldms %d %s", p->ctx->current_timestamp - p->ctx->timestamp,
-		p->num, msg);
+			p->num, msg);
 	if (ft_unlock(&(p->ctx->print_lock)) < 0)
 		return (-1);
 	return (0);

@@ -6,11 +6,33 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 17:11:02 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/16 20:08:50 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_check_one_of_philos_died(t_philo *p)
+{
+	int		i;
+	t_philo	*q;
+
+	i = 0;
+	while (i < p->ctx->num_of_philos)
+	{
+		q = p + i;
+		if (q->ctx->current_timestamp - q->ctx->time_to_die >= q->timestamp
+			&& !ft_philo_is_dead(q))
+		{
+			q->status = STA_PHILO_DIED;
+			q->ctx->killswitch = TRUE;
+			ft_print_philo_status(q, MSG_PHILO_DIED);
+			return (TRUE);
+		}
+		i++;
+	}
+	return (FALSE);
+}
 
 int	ft_check_half_of_philos_have_eaten(t_philo *p)
 {
@@ -36,6 +58,14 @@ int	ft_check_half_of_philos_have_eaten(t_philo *p)
 	return (ret);
 }
 
+void	ft_decide_philos_turn(t_philo *p)
+{
+	if (p->ctx->num_of_philos % 2 == 1)
+		p->ctx->turn = (p->ctx->turn + 1) % 3;
+	else
+		p->ctx->turn = !(p->ctx->turn);
+}
+
 /*
 **	Watch philosophers' status.
 **
@@ -45,11 +75,9 @@ int	ft_check_half_of_philos_have_eaten(t_philo *p)
 
 void	*ft_watch_philos(void *philos)
 {
-	t_philo		*p;
-	int			i;
+	t_philo	*p;
 
 	p = (t_philo *)philos;
-	i = 0;
 	while (p->ctx->num_of_times_each_philo_must_eat == 0
 		|| p->ctx->num_of_philos_done_must_eat
 		!= p->ctx->num_of_times_each_philo_must_eat)
@@ -57,17 +85,12 @@ void	*ft_watch_philos(void *philos)
 		p->ctx->current_timestamp = ft_get_timestamp_ms();
 		if (p->ctx->current_timestamp < 0)
 			p->ctx->killswitch = TRUE;
-		if (ft_philo_is_dead(p))
-			return ((void *)(-1));
-		if (ft_check_half_of_philos_have_eaten(p))
-		{
-			if (p->ctx->num_of_philos % 2 == 1)
-				p->ctx->turn = (p->ctx->turn + 1) % 3;
-			else
-				p->ctx->turn = !(p->ctx->turn);
-		}
-		if (usleep(100) < 0)
+		if (ft_check_one_of_philos_died(p))
 			break ;
+		if (ft_check_half_of_philos_have_eaten(p))
+			ft_decide_philos_turn(p);
+		if (usleep(50) < 0)
+			p->ctx->killswitch = TRUE;
 	}
 	return (NULL);
 }
