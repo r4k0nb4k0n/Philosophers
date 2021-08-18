@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/12 16:51:31 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/18 17:51:54 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 
 int	ft_philo_drop_forks(t_philo *p)
 {
-	if (ft_unlock(p->fork_locks[(p->num + 1) % 2]) < 0)
-		return (-1);
 	if (ft_unlock(p->fork_locks[p->num % 2]) < 0)
+		return (-1);
+	if (ft_unlock(p->fork_locks[(p->num + 1) % 2]) < 0)
 		return (-1);
 	return (0);
 }
