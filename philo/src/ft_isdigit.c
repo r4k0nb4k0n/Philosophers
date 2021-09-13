@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 19:34:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/23 17:54:05 by hyechoi          ###   ########.fr       */
+/*   Created: 2021/09/13 19:23:05 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/09/13 19:28:23 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putchar_fd(char c, int fd)
+/*
+**	Return if the character is digit.
+**
+**	@param	char	c	The character.
+**	@return	int		res	Whether the character is digit or not.
+*/
+
+int	ft_isdigit(char c)
 {
-	write(fd, &c, 1);
+	return ('0' <= c && c <= '9');
 }

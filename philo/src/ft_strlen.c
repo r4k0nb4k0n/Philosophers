@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 19:38:55 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/23 17:55:58 by hyechoi          ###   ########.fr       */
+/*   Created: 2021/09/13 19:28:01 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/09/13 19:28:13 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putstr_fd(char *s, int fd)
+/*
+**	Return the length of string.
+**
+**	@param	char	*s	The string.
+**	@return	int		c	The length of the string.
+*/
+
+int	ft_strlen(char *s)
 {
-	if (s != NULL)
-		write(fd, s, ft_strlen(s));
+	char	*p;
+
+	p = s;
+	while (*p)
+		p++;
+	return (p - s);
 }

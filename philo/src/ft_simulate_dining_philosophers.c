@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:33:12 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/21 04:17:49 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/09/13 21:15:13 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,10 @@ int	ft_join_threads_of_philos(t_context *ctx, t_philo *philos)
 
 int	ft_simulate_dining_philosophers(t_context *ctx, t_philo *philos)
 {
-	int			res_philos;
-	/*int			res_watcher;
-	pthread_t	watcher;
+	int	res_philos;
 
-	if (pthread_create(&watcher, NULL, &ft_watch_philos, (void *)philos) != 0)
-		return (-1);*/
 	if (ft_create_threads_of_philos(ctx, philos) < 0)
 		return (-1);
-	/*if (pthread_join(watcher, (void **)&res_watcher) != 0)
-	{
-		if (res_watcher < 0)
-			return (res_watcher);
-	}*/
 	res_philos = ft_join_threads_of_philos(ctx, philos);
 	if (res_philos < 0)
 		return (res_philos);

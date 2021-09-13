@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calc_elapsed_timeval.c                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 20:44:56 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/07/24 23:49:49 by hyechoi          ###   ########.fr       */
+/*   Created: 2021/09/13 19:30:43 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/09/13 19:31:09 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	ft_calc_elapsed_timeval(t_timeval before, t_timeval after)
+/*
+**	Duplicate a string.
+**
+**	@param	char	*str	A string to duplicate.
+**	@return	char	*ret	A duplicated string.
+*/
+
+char	*ft_strdup(char *str)
 {
-	return ((after.tv_sec - before.tv_sec) * 1000
-		+ (after.tv_usec - before.tv_usec) / 1000);
+	char	*ret;
+	size_t	len_str;
+
+	len_str = ft_strlen((char *)str);
+	ret = malloc(len_str + 1);
+	if (ret != NULL)
+		ft_strlcpy(ret, str, len_str + 1);
+	return (ret);
 }

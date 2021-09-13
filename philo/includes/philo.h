@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/21 04:11:34 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/09/13 20:55:58 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define ERR_USAGE2 "time_to_eat time_to_sleep "
 # define ERR_USAGE3 "[number_of_times_each_philosopher_must_eat]\n"
 # define ERR_MALLOC "Failed to malloc\n"
-# define ERR_FAILED_INIT_CONTEXT_PHILO "Failed to init the context of philo\n"
+# define ERR_FAILED_INIT_CONTEXT "Failed to init the context of philo\n"
 # define ERR_FAILED_INIT_FORK_LOCKS "Failed to init fork locks\n"
 # define ERR_FAILED_SIMULATE "Failed to simulate\n"
 
@@ -84,9 +84,6 @@
 # define FALSE 0
 # define LEFT 0
 # define RIGHT 1
-# define ODD 0
-# define EVEN 1
-# define ODD_LAST 2
 
 /*
 **	Define necessary typedef and struct
@@ -111,7 +108,6 @@ typedef struct s_context
 	t_lock			print_lock;
 	volatile int	killswitch;
 	volatile int	num_of_philos_done_must_eat;
-	volatile int	turn;
 }	t_context;
 
 typedef struct s_philo
@@ -146,24 +142,6 @@ char	*ft_strdup(char *str);
 int		ft_atoi(const char *nptr);
 
 /*
-**	ft_putchar_fd.c
-*/
-
-void	ft_putchar_fd(char c, int fd);
-
-/*
-**	ft_putnbr_fd.c
-*/
-
-void	ft_putnbr_fd(int n, int fd);
-
-/*
-**	ft_putstr_fd.c
-*/
-
-void	ft_putstr_fd(char *s, int fd);
-
-/*
 **	ft_error.c
 */
 
@@ -190,10 +168,10 @@ int		ft_check_if_str_int_format(char *str);
 int		ft_check_if_strs_int_format(int strc, char **strv);
 
 /*
-**	ft_init_context_philo.c
+**	ft_init_context.c
 */
 
-int		ft_init_context_philo(t_context *ctx, int paramc, char **paramv);
+int		ft_init_context(t_context *ctx, int paramc, char **paramv);
 
 /*
 **	ft_init_fork_locks.c

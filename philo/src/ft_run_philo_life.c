@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/21 05:03:18 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/09/13 21:31:14 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 **	Clean philosopher's life.
 **	Drop philosopher's forks.
-**	Unlock philosopher's act_lock.
+**	Unlock philosopher's vital_lock.
 **
 **	@param	t_philo	*p
 **	@return	int		res	Return 0 if success
@@ -52,7 +52,7 @@ int	ft_loop_philo_life(t_philo *p)
 	p->timestamp = ft_get_timestamp_ms();
 	p->is_full = FALSE;
 	if (p->num % 2 == 1)
-		ft_msleep(2);
+		ft_msleep(1);
 	if (ft_philo_take_forks(p) < 0)
 		return (0);
 	while (TRUE)
@@ -74,7 +74,7 @@ int	ft_loop_philo_life(t_philo *p)
 **	1. Loop philo life.
 **	2. If died, print dying message.
 **	3. Clean philo life.
-**	4. 
+**	4.
 **
 **	@param	void	*philo
 **	@return	void	*		NULL if loop stops normally
@@ -88,7 +88,7 @@ void	*ft_run_philo_life(void *philo)
 	p = (t_philo *)philo;
 	if (ft_loop_philo_life(p) < 0)
 		return ((void *)(-1));
-	if (ft_msleep(10) < 0)
+	if (ft_msleep(100) < 0)
 		return ((void *)(-1));
 	if (ft_clean_philo_life(p) < 0)
 		return ((void *)(-1));
