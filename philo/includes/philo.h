@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/13 17:04:27 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/21 04:11:34 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ typedef struct s_context
 	int				time_to_sleep;
 	int				num_of_times_each_philo_must_eat;
 	long			timestamp;
-	volatile long	current_timestamp;
 	t_lock			print_lock;
 	volatile int	killswitch;
 	volatile int	num_of_philos_done_must_eat;
@@ -123,7 +122,7 @@ typedef struct s_philo
 	volatile int	num_of_times_each_philo_must_eat;
 	volatile long	timestamp;
 	t_context		*ctx;
-	t_lock			act_lock;
+	t_lock			vital_lock;
 	t_lock			*fork_locks[2];
 	pthread_t		thread;
 }	t_philo;
@@ -243,6 +242,12 @@ int		ft_print_philo_status(t_philo *philo, char *msg);
 */
 
 int		ft_print_alert(t_lock *print_lock, char *msg);
+
+/*
+**	ft_philo_is_starving.c
+*/
+
+int		ft_philo_is_starving(t_philo *p);
 
 /*
 **	ft_philo_is_dead.c

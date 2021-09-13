@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:20:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/18 18:40:36 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/21 05:02:55 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,19 @@ int	ft_philo_is_my_turn(t_philo *p)
 
 int	ft_philo_take_forks(t_philo *p)
 {
-	while (!ft_philo_is_my_turn(p))
+	/*while (!ft_philo_is_my_turn(p))
 	{
-		if (usleep(50) < 0)
-			return (-1);
 		if (ft_philo_is_dead(p))
 			return (-1);
-	}
-	if (ft_philo_take_fork(p, p->num % 2) < 0)
+	}*/
+	if (ft_philo_take_fork(p, LEFT) < 0)
 		return (-1);
 	while (p->fork_locks[LEFT] == p->fork_locks[RIGHT])
 	{
 		if (ft_philo_is_dead(p))
 			return (-1);
 	}
-	if (ft_philo_take_fork(p, (p->num + 1) % 2) < 0)
+	if (ft_philo_take_fork(p, RIGHT) < 0)
 		return (-1);
 	return (0);
 }

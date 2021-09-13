@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 21:15:02 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/16 20:08:50 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/21 04:16:31 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_check_one_of_philos_died(t_philo *p)
 	while (i < p->ctx->num_of_philos)
 	{
 		q = p + i;
-		if (q->ctx->current_timestamp - q->ctx->time_to_die >= q->timestamp
+		if (ft_get_timestamp_ms() - q->ctx->time_to_die >= q->timestamp
 			&& !ft_philo_is_dead(q))
 		{
 			q->status = STA_PHILO_DIED;
@@ -82,15 +82,12 @@ void	*ft_watch_philos(void *philos)
 		|| p->ctx->num_of_philos_done_must_eat
 		!= p->ctx->num_of_times_each_philo_must_eat)
 	{
-		p->ctx->current_timestamp = ft_get_timestamp_ms();
-		if (p->ctx->current_timestamp < 0)
+		if (ft_msleep(4) < 0)
 			p->ctx->killswitch = TRUE;
 		if (ft_check_one_of_philos_died(p))
 			break ;
-		if (ft_check_half_of_philos_have_eaten(p))
-			ft_decide_philos_turn(p);
-		if (usleep(50) < 0)
-			p->ctx->killswitch = TRUE;
+		/*if (ft_check_half_of_philos_have_eaten(p))
+			ft_decide_philos_turn(p);*/
 	}
 	return (NULL);
 }

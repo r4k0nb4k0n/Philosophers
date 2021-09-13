@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/16 20:05:00 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/08/21 05:03:18 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_clean_philo_life(t_philo *p)
 {
 	if (ft_philo_drop_forks(p) < 0)
 		return (-1);
-	if (ft_unlock(&(p->act_lock)) < 0)
+	if (ft_unlock(&(p->vital_lock)) < 0)
 		return (-1);
 	return (0);
 }
@@ -49,10 +49,10 @@ int	ft_clean_philo_life(t_philo *p)
 
 int	ft_loop_philo_life(t_philo *p)
 {
-	if (ft_trylock(&(p->act_lock)) < 0)
-		return (-1);
-	p->timestamp = p->ctx->current_timestamp;
+	p->timestamp = ft_get_timestamp_ms();
 	p->is_full = FALSE;
+	if (p->num % 2 == 1)
+		ft_msleep(2);
 	if (ft_philo_take_forks(p) < 0)
 		return (0);
 	while (TRUE)
@@ -66,8 +66,6 @@ int	ft_loop_philo_life(t_philo *p)
 		if (ft_philo_think(p) < 0)
 			break ;
 	}
-	if (ft_unlock(&(p->act_lock)) < 0)
-		return (-1);
 	return (0);
 }
 
