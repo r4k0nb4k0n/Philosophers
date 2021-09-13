@@ -6,14 +6,14 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:33:12 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/13 21:15:13 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/13 21:38:08 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 int	ft_create_threads_of_philos_param(t_context *ctx, t_philo *philos,
-	int	start, int gap)
+	int start, int gap)
 {
 	int	i;
 
