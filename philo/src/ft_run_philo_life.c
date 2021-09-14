@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 18:57:27 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/13 21:31:14 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/14 15:57:11 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 **	Clean philosopher's life.
 **	Drop philosopher's forks.
-**	Unlock philosopher's vital_lock.
+**	Unlock philosopher's eat_lock.
 **
 **	@param	t_philo	*p
 **	@return	int		res	Return 0 if success
@@ -26,7 +26,7 @@ int	ft_clean_philo_life(t_philo *p)
 {
 	if (ft_philo_drop_forks(p) < 0)
 		return (-1);
-	if (ft_unlock(&(p->vital_lock)) < 0)
+	if (ft_unlock(&(p->eat_lock)) < 0)
 		return (-1);
 	return (0);
 }

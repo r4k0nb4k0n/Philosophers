@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_philo_status_for_ms.c                     :+:      :+:    :+:   */
+/*   ft_philo_handle_starve.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/26 04:50:28 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/14 15:26:46 by hyechoi          ###   ########seoul.kr  */
+/*   Created: 2021/09/14 15:01:51 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/09/14 15:02:03 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*
-**	Check if philo status is expected status for `ms` ms.
-**
-**	@param	t_philo	*p
-**	@param	long	milliseconds
-**	@return	int		res				Return 0 if success
-**									Return -1 if expected or failure
-*/
-
-int	ft_check_philo_status_for_ms(t_philo *p, long milliseconds)
+int	ft_philo_handle_starve(t_philo *p)
 {
-	long	threshold;
-
-	threshold = ft_get_timestamp_ms() + milliseconds;
-	while (ft_get_timestamp_ms() < threshold)
+	while (ft_trylock(&(p->eat_lock)) < 0)
 	{
 		if (ft_philo_is_dead(p))
-			return (-1);
-		if (usleep(100) < 0)
-			return (-1);
+			return (TRUE);
 	}
-	return (0);
+	if (ft_philo_is_starving(p))
+	{
+		p->ctx->killswitch = TRUE;
+		p->status = STA_PHILO_DIED;
+		ft_print_philo_status(p, MSG_PHILO_DIED);
+	}
+	ft_unlock(&(p->eat_lock));
+	return (ft_philo_is_dead(p));
 }

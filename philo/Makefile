@@ -6,7 +6,7 @@
 #    By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 03:29:59 by hyechoi           #+#    #+#              #
-#    Updated: 2021/09/13 20:57:23 by hyechoi          ###   ########seoul.kr   #
+#    Updated: 2021/09/14 15:02:56 by hyechoi          ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,11 @@ SRC_FILE = ft_isdigit.c ft_issign.c ft_isspace.c\
 			ft_clean_fork_locks.c\
 			ft_trylock.c ft_unlock.c\
 			ft_print_philo_status.c ft_print_alert.c\
-			ft_philo_is_starving.c ft_philo_is_dead.c\
+			ft_philo_is_starving.c ft_philo_handle_starve.c ft_philo_is_dead.c\
             ft_philo_take_forks.c ft_philo_drop_forks.c\
 			ft_philo_think.c ft_philo_eat.c ft_philo_sleep.c\
 			ft_philo_is_done_must_eat.c\
+			ft_watch_philos.c\
 			ft_run_philo_life.c ft_simulate_dining_philosophers.c\
 			ft_clean_dining_philosophers.c\
 			philo.c

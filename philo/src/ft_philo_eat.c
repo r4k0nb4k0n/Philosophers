@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/21 04:34:21 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/09/14 10:40:59 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	ft_philo_check_must_eat(t_philo *p)
 
 int	ft_philo_eat(t_philo *p)
 {
-	while (ft_trylock(&(p->vital_lock)) < 0)
+	while (ft_trylock(&(p->eat_lock)) < 0)
 	{
 		if (p->ctx->killswitch || p->status == STA_PHILO_DIED)
 			return (TRUE);
 	}
 	p->timestamp = ft_get_timestamp_ms();
 	p->is_full = TRUE;
-	ft_unlock(&(p->vital_lock));
+	ft_unlock(&(p->eat_lock));
 	if (ft_print_philo_status(p, MSG_PHILO_EATING) < 0)
 		return (-1);
 	if (ft_check_philo_status_for_ms(p, p->ctx->time_to_eat) < 0)

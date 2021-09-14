@@ -6,27 +6,11 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:33:12 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/13 21:38:08 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/14 11:11:42 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_create_threads_of_philos_param(t_context *ctx, t_philo *philos,
-	int start, int gap)
-{
-	int	i;
-
-	i = start;
-	while (i < ctx->num_of_philos)
-	{
-		if (pthread_create(&(philos[i].thread), NULL, &ft_run_philo_life,
-				(void *)(philos + i)) != 0)
-			return (-1);
-		i += gap;
-	}
-	return (0);
-}
 
 /*
 **	Create threads of philos.
@@ -39,8 +23,16 @@ int	ft_create_threads_of_philos_param(t_context *ctx, t_philo *philos,
 
 int	ft_create_threads_of_philos(t_context *ctx, t_philo *philos)
 {
-	if (ft_create_threads_of_philos_param(ctx, philos, 0, 1) < 0)
-		return (-1);
+	int	i;
+
+	i = 0;
+	while (i < ctx->num_of_philos)
+	{
+		if (pthread_create(&(philos[i].thread), NULL, &ft_run_philo_life,
+				(void *)(philos + i)) != 0)
+			return (-1);
+		i++;
+	}
 	return (0);
 }
 
@@ -88,6 +80,7 @@ int	ft_simulate_dining_philosophers(t_context *ctx, t_philo *philos)
 
 	if (ft_create_threads_of_philos(ctx, philos) < 0)
 		return (-1);
+	ft_watch_philos(ctx, philos);
 	res_philos = ft_join_threads_of_philos(ctx, philos);
 	if (res_philos < 0)
 		return (res_philos);

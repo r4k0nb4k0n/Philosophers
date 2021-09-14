@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:20:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/13 19:15:21 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/09/14 15:55:13 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	ft_philo_take_fork(t_philo *p, int direction)
 /*
 **	Philosopher takes forks.
 **	Philosopher takes two forks.
-**	Even num philospher takes a left fork, and then takes a right fork.
-**	Odd num philosopher takes a right fork, and then takes a left fork.
 **
 **	@param	t_philo	*p
 **	@return	int		status	Return 0 if success.

@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:21:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/08/21 04:18:16 by hyechoi          ###   ########.fr       */
+/*   Updated: 2021/09/14 10:40:59 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	ft_clean_dining_philosophers(t_context *ctx, t_lock **fork_locks,
 	i = 0;
 	while (i < ctx->num_of_philos)
 	{
-		pthread_mutex_destroy(((*philos + i)->vital_lock).mutex);
-		free(((*philos + i)->vital_lock).mutex);
-		((*philos + i)->vital_lock).mutex = NULL;
+		pthread_mutex_destroy(((*philos + i)->eat_lock).mutex);
+		free(((*philos + i)->eat_lock).mutex);
+		((*philos + i)->eat_lock).mutex = NULL;
 		i++;
 	}
 	free(*philos);
