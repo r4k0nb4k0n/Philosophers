@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:01:51 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/14 15:02:03 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/15 15:08:47 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_philo_handle_starve(t_philo *p)
 	{
 		if (ft_philo_is_dead(p))
 			return (TRUE);
+		usleep(100);
 	}
 	if (ft_philo_is_starving(p))
 	{

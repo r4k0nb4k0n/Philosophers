@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 15:44:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/14 10:40:59 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/15 15:08:53 by hyechoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int	ft_philo_eat(t_philo *p)
 {
 	while (ft_trylock(&(p->eat_lock)) < 0)
 	{
-		if (p->ctx->killswitch || p->status == STA_PHILO_DIED)
+		if (ft_philo_is_dead(p))
 			return (TRUE);
+		usleep(100);
 	}
 	p->timestamp = ft_get_timestamp_ms();
 	p->is_full = TRUE;
