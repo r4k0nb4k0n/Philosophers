@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_usage.c                                   :+:      :+:    :+:   */
+/*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 19:37:31 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/20 19:17:47 by hyechoi          ###   ########seoul.kr  */
+/*   Created: 2021/09/20 19:10:56 by hyechoi           #+#    #+#             */
+/*   Updated: 2021/09/20 19:14:48 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 /*
-**	Print usage in stderr.
+**	Check if arguments are valid.
 **
-**	@param	void	Nothing.
-**	@return	int		always return 1.
+**	@param	int		argc
+**	@param	char	**argv
+**	@return	int		res		Return 0 if all valid.
+**							Return -1 if not
 */
 
-int	ft_print_usage(void)
+int	ft_check_args(int argc, char **argv)
 {
-	ft_print_error(NULL, ERR_USAGE1);
-	ft_print_error(NULL, ERR_USAGE2);
-	ft_print_error(NULL, ERR_USAGE3);
-	return (1);
+	if (argc < 5 || argc > 6
+		|| !ft_check_if_strs_int_format(argc - 1, argv + 1))
+		return (-1);
+	return (0);
 }

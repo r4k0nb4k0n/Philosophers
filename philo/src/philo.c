@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:36:39 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/13 21:09:31 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/20 19:18:00 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	main(int ac, char **av)
 	t_philo		*philos;
 	int			res;
 
-	res = (ac < 5 || ac > 6 || !ft_check_if_strs_int_format(ac - 1, av + 1));
-	if (res == TRUE)
-		ft_print_usage();
+	res = ft_check_args(ac, av);
+	if (res < 0)
+		return (ft_print_usage());
 	else
 		res = ft_init_context(&ctx, ac - 1, av + 1);
 	if (res < 0)

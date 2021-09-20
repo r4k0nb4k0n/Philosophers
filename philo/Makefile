@@ -6,7 +6,7 @@
 #    By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 03:29:59 by hyechoi           #+#    #+#              #
-#    Updated: 2021/09/14 15:02:56 by hyechoi          ###   ########seoul.kr   #
+#    Updated: 2021/09/20 19:14:28 by hyechoi          ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC_FILE = ft_isdigit.c ft_issign.c ft_isspace.c\
 			ft_atoi.c ft_strdup.c ft_strlcpy.c\
 			ft_strlen.c ft_strncmp.c\
 			ft_get_timestamp_ms.c\
-			ft_check_if_str_int_format.c\
+			ft_check_args.c ft_check_if_str_int_format.c\
 			ft_msleep.c\
 			ft_check_philo_status_for_ms.c\
 			ft_init_context.c ft_init_fork_locks.c ft_init_philos.c\

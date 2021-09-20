@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 03:32:00 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/14 15:02:28 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/20 19:17:21 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int		ft_atoi(const char *nptr);
 */
 
 void	ft_print_error(char *prefix, char *msg);
-void	ft_print_usage(void);
+int		ft_print_usage(void);
 
 /*
 **	ft_msleep.c
@@ -166,6 +166,12 @@ int		ft_check_philo_status_for_ms(t_philo *p, long milliseconds);
 
 int		ft_check_if_str_int_format(char *str);
 int		ft_check_if_strs_int_format(int strc, char **strv);
+
+/*
+**	ft_check_args.c
+*/
+
+int		ft_check_args(int argc, char **argv);
 
 /*
 **	ft_init_context.c
