@@ -6,7 +6,7 @@
 /*   By: hyechoi <hyechoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:02:17 by hyechoi           #+#    #+#             */
-/*   Updated: 2021/09/14 15:00:29 by hyechoi          ###   ########seoul.kr  */
+/*   Updated: 2021/09/20 19:29:31 by hyechoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	ft_watch_philos(t_context *ctx, t_philo *philos)
 				return ;
 			i++;
 		}
-		ft_msleep(1);
+		usleep(100);
 	}
 }
